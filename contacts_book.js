@@ -2,12 +2,16 @@ var uid = 1;
 function ContactController($scope) {
 
     $scope.contacts = [
-        { id:0,
+        { id: 0,
           'name': 'li-lin',
-          'email':'lilin@yandex.com',
-          'phone': '123-2343-44'
+          'index':'1122'
         }
     ];
+
+    $scope.jsonObj = {
+        name: "1990",
+        students: $scope.contacts
+    };
 
     $scope.saveContact = function() {
         if($scope.newcontact.id == null) {
@@ -25,7 +29,7 @@ function ContactController($scope) {
 
         //clear the add contact form
         $scope.newcontact = {};
-    }
+    };
 
     $scope.delete = function(id) {
         //search contact with given id and delete it
@@ -35,16 +39,15 @@ function ContactController($scope) {
                 $scope.newcontact = {};
             }
         }
-    }
+    };
 
     $scope.edit = function(id) {
     //search contact with given id and update it
         for(i in $scope.contacts) {
             if($scope.contacts[i].id == id) {
-                //we use angular.copy() method to create
-                //copy of original object
+                //we use angular.copy() method to create copy of original object
                 $scope.newcontact = angular.copy($scope.contacts[i]);
             }
         }
-    }
+    };
 }
