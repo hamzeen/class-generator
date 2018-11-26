@@ -2,10 +2,23 @@
 <html ng-app>
 <head>
     <title>AngularJS - Contacts Book</title>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script type="text/javascript"
         src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script type="text/javascript" src="contacts_book.js"></script>
     <link rel="stylesheet" media="screen" href="bootstrap.css" />
+    <script>
+    $(document).ready(function () {
+        $('#btnFormat').click(function() {
+            console.log('hello');
+            $('#formatted_json').text(
+                JSON.stringify(
+                    JSON.parse(
+                        $('#raw_json').text()), null ,2)
+            );
+        });
+    });
+    </script>
 </head>
 
 <body>
@@ -26,7 +39,11 @@
     </form><br/><br/>
 
     <h4>Content to Copy into {{jsonObj.name}}.json</h4>
-    {{jsonObj | json}}
+
+    <div style="opacity:0;" id="raw_json">{{jsonObj | json}}</div>
+    <!--<textarea id="temp_json">value {{jsonObj | json}}</textarea>//-->
+    <pre id="formatted_json"></pre>
+    <div class="col-6" style="padding: 20px; background: limegreen; color:#eee" id="btnFormat">Show My JSON</div>
     <br/><br/><br/>
 
     <h5>Sample View for the 'Class of {{jsonObj.name}}'</h5>
@@ -43,7 +60,7 @@
           <td>{{contact.name}}</td>
           <td>{{contact.index}}</td>
           <td>
-            <a  href="#" ng-click="edit(contact.id)">edit</a> |
+            <a href="#" ng-click="edit(contact.id)">edit</a> |
             <a href="#" ng-click="delete(contact.id)">delete</a>
           </td>
         </tr>
