@@ -3,7 +3,7 @@ function ContactController($scope) {
 
     $scope.contacts = [
         { id: 0,
-          'name': 'li-lin',
+          'name': 'Ilham',
           'index':'1122'
         }
     ];
