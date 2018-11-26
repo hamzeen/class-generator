@@ -24,7 +24,7 @@
 <body>
 <div style="margin: 0 auto;margin-top: 5%; width: 80%" ng-controller="ContactController">
     <h4>Create new Class</h4>
-    <label>FileName (ex: enter <strong>"1990"</strong> for 1990.json):</label>
+    <label>File Name (ex: <strong>"1990"</strong> for 1990.json):</label>
     <input type="text" name="jsonname" ng-model="jsonObj.name"/>
 
     <form name="contact-form" class="well ng-valid ng-dirty">
@@ -43,7 +43,7 @@
     <div style="opacity: 0; height: 0px;" id="raw_json">{{jsonObj | json}}</div>
     <!--<textarea id="temp_json">value {{jsonObj | json}}</textarea>//-->
     <pre id="formatted_json"></pre>
-    <div class="col-6 btn-primary" style="padding: 20px; background: limegreen; color:#eee" id="btnFormat">Show My JSON</div>
+    <div class="col-6 btn btn-primary" style="padding: 20px; background: limegreen; color:#eee" id="btnFormat">Show My JSON</div>
     <br/><br/><br/>
 
     <h5>Sample View for the 'Class of {{jsonObj.name}}'</h5>
