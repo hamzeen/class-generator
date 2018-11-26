@@ -10,33 +10,38 @@
 
 <body>
 <div style="margin: 0 auto;margin-top: 5%; width: 80%" ng-controller="ContactController">
-    <h2>Contacts Book</h2>
-    <form class="well ng-valid ng-dirty">
+    <h4>Create new Class</h4>
+    <label>FileName (ex: enter <strong>"1990"</strong> for 1990.json):</label>
+    <input type="text" name="jsonname" ng-model="jsonObj.name"/>
+
+    <form name="contact-form" class="well ng-valid ng-dirty">
     <label>Name</label>
         <input type="text" name="name" ng-model="newcontact.name"/>
-    <label>Email</label>
-        <input type="text" name="email" ng-model="newcontact.email"/>
-    <label>Phone</label>
-        <input type="text" name="phone" ng-model="newcontact.phone"/>
+    <label>Index</label>
+        <input type="text" name="index" ng-model="newcontact.index"/>
+
         <br/>
         <input type="hidden" ng-model="newcontact.id" />
      <input type="button" value="Save" ng-click="saveContact()" class="btn btn-primary" />
-    </form>
+    </form><br/><br/>
 
+    <h4>Content to Copy into {{jsonObj.name}}.json</h4>
+    {{jsonObj | json}}
+    <br/><br/><br/>
+
+    <h5>Sample View for the 'Class of {{jsonObj.name}}'</h5>
     <table class="table table-striped table-bordered">
       <thead>
         <tr>
           <th>Name</th>
-          <th>Email</th>
-          <th>Phone</th>
+          <th>Index</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr ng-repeat="contact in contacts">
           <td>{{contact.name}}</td>
-          <td>{{contact.email}}</td>
-          <td>{{contact.phone}}</td>
+          <td>{{contact.index}}</td>
           <td>
             <a  href="#" ng-click="edit(contact.id)">edit</a> |
             <a href="#" ng-click="delete(contact.id)">delete</a>
