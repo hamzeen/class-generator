@@ -16,6 +16,10 @@ h1 {
     font-weight: 900;
     color: #ff8d00;
 }
+.row {
+  width: 200%;
+  margin-left: 0px;
+}
 /* -----------------------
   Form
 ----------------------- */
