@@ -31,7 +31,7 @@
     <label>Name</label>
         <input type="text" name="name" ng-model="newcontact.name"/>
     <label>Index</label>
-        <input type="text" name="index" ng-model="newcontact.index"/>
+        <input type="text" name="index" ng-model="newcontact.stuId"/>
         <br/>
     <label>Phone</label>
         <input type="text" name="index" ng-model="newcontact.phone"/>
@@ -76,7 +76,7 @@
       <tbody>
         <tr ng-repeat="contact in contacts">
           <td>{{contact.name}}</td>
-          <td>{{contact.index}}</td>
+          <td>{{contact.stuId}}</td>
           <td>
             <a href="#" ng-click="edit(contact.id)">edit</a> |
             <a href="#" ng-click="delete(contact.id)">delete</a>
