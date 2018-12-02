@@ -6,7 +6,7 @@
     <script type="text/javascript"
         src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
     <script type="text/javascript" src="contacts_book.js"></script>
-    <link rel="stylesheet" media="screen" href="bootstrap.css" />
+    <link rel="stylesheet" media="screen" href="bootstrap.min.css" />
     <script>
     $(document).ready(function () {
         $('#btnFormat').click(function() {
@@ -14,6 +14,17 @@
               JSON.stringify(JSON.parse($('#raw_json').text()), null, 2)
             );
         });
+
+        $('.form-group').each((i,e) => {
+          $('.form-control', e).focus( function () {
+            e.classList.add('not-empty');
+          })
+          .blur( function () {
+            this.value === '' ? e.classList.remove('not-empty') : null;
+          });
+        });
+
+
     });
     </script>
 </head>
@@ -23,50 +34,76 @@
 
     <!-- Alumni Class Year //-->
     <h4>Create new Class</h4>
+
     <label>File Name (ex: <strong>"1990"</strong> for 1990.json):</label>
     <input type="text" name="jsonname" ng-model="jsonObj.name"/>
 
 
     <!-- Form to capture alumni details //-->
+    <div class="row">
     <form name="contact-form" class="well ng-valid ng-dirty">
+        <div class="col-md-6">
+            <!-- Name //-->
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input id="name" class="form-control" type="text" ng-model="newcontact.name"/>
+            </div>
 
-      <!-- Name & index //-->
-      <label>Name
-        <input type="text" ng-model="newcontact.name"/></label>
-      <label>Index
-        <input type="text" ng-model="newcontact.stuId"/></label>
+            <!-- Phone //-->
+            <div class="form-group">
+                <label for="name">Phone</label>
+                <input id="phone" class="form-control" type="text" ng-model="newcontact.phone"/>
+            </div>
+
+            <div class="" style="margin: 25px 0px">
+                <label>Graduate</label>
+                <input type="radio" ng-model="newcontact.graduate" value="YES">YES
+                <input type="radio" ng-model="newcontact.graduate" value="NO">NO
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" class="form-control" type="text" ng-model="newcontact.address"/></textarea>
+            </div>
+            <input type="hidden" ng-model="newcontact.id" />
+        </div>
+
+        <div class="col-md-6">
+            <!-- index //-->
+            <div class="form-group">
+                <label for="stuId">Index</label>
+                <input id="stuId" class="form-control" type="text" ng-model="newcontact.stuId"/>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input id="email" class="form-control" type="text" ng-model="newcontact.email"/>
+            </div>
+
+            <div class="form-group">
+                <label for="donation">Donation</label>
+                <input id="donation" class="form-control" type="text" ng-model="newcontact.donation"/>
+            </div>
+            <div class="" style="margin: 25px 0px">
+                <label>Gender</label>
+                <input type="radio" value="MALE" ng-model="newcontact.gender">MALE
+                <input type="radio" value="FEMALE" ng-model="newcontact.gender">FEMALE
+            </div>
+        </div>
 
 
-      <!-- Phone & Email //-->
-      <label>Phone
-        <input type="text" ng-model="newcontact.phone"/></label>
-      <label>Email
-        <input type="text" ng-model="newcontact.email"/></label>
 
+        <!--<input type="button" value="Save" ng-click="saveContact()" class="btn btn-primary" />//-->
 
-      <!-- Grad & Donation //-->
-      <label>
-        Graduate
-        <input type="radio" ng-model="newcontact.graduate" value="YES" />YES
-        <input type="radio" ng-model="newcontact.graduate" value="NO" />NO
-      </label>
-      <label>Donation
-        <input type="text" ng-model="newcontact.donation"/></label>
+        <div style="clear: both; margin: 15px;">
+            <input style="margin-top: 20px;padding:20px 70px; background: #337ab7;color: #fff; font-size:19px; font-weight: 200;"
+                   type="button" value="Save" ng-click="saveContact()"
+                   class="btn">
+        </div>
 
+    </form>
+    </div><br/><br/>
+            <!-- End of Form //-->
 
-      <!-- Grad & Donation //-->
-      <label>
-        Address
-        <textarea ng-model="newcontact.address"/>{{newcontact.address}}</textarea></label>
-      <label>Gender
-            <input type="radio" ng-model="newcontact.gender" value="MALE" />Male
-            <input type="radio" ng-model="newcontact.gender" value="FEMALE" />Female
-      </label>
-
-      <input type="hidden" ng-model="newcontact.id" />
-      <input type="button" value="Save" ng-click="saveContact()" class="btn btn-primary" />
-
-    </form><br/><br/><!-- End of Form //-->
 
 
     <!-- Formatted JSON //-->
@@ -75,7 +112,9 @@
     <div style="opacity: 0; height: 0px;" id="raw_json">{{jsonObj | json}}</div>
       <pre id="formatted_json"></pre>
 
-      <div class="col-6 btn btn-primary" style="padding: 20px; background: limegreen; color:#eee" id="btnFormat">Show My JSON</div>
+      <div class="col-6 btn btn-primary"
+           style="border: none;padding: 20px 40px; font-size:19px; font-weight: 200; background: #1ebb1e; color:#eee;"
+           id="btnFormat">Generate JSON</div>
       <!-- LIVE PREVIEW:
         <div style="opacity: 0; height: 0px;" id="raw_json">{{jsonObj | json}}</div>//-->
     <br/><br/><br/>
