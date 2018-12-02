@@ -30,7 +30,7 @@
 </head>
 
 <body>
-<div style="margin: 0 auto;margin-top: 5%; width: 90%" ng-controller="ContactController">
+<div style="margin: 0 auto;margin-top: 5%; width: 80%" ng-controller="ContactController">
 
     <!-- Alumni Class Year //-->
     <h4>Create new Class</h4>
@@ -40,7 +40,7 @@
 
 
     <!-- Form to capture alumni details //-->
-    <div class="row" style="width: 100%;margin-left: 0px;">
+    <div class="row">
     <form name="contact-form" class="well ng-valid ng-dirty">
         <div class="col-md-6">
             <!-- Name //-->
@@ -57,8 +57,13 @@
 
             <div class="" style="margin: 25px 0px">
                 <label>Graduate</label>
-                <input type="radio" ng-model="newcontact.graduate" value="YES">YES
-                <input type="radio" ng-model="newcontact.graduate" value="NO">NO
+                <fieldset>
+                    <input type="radio" id="grad-yes" value="YES" ng-model="newcontact.graduate"/>
+                    <label for="grad-yes">YES</label>
+
+                    <input type="radio" id="grad-no" value="NO" ng-model="newcontact.graduate"/>
+                    <label for="grad-no">NO</label>
+                </fieldset>
             </div>
 
             <div class="form-group">
@@ -85,14 +90,18 @@
             </div>
             <div class="" style="margin: 25px 0px">
                 <label>Gender</label>
-                <input type="radio" value="MALE" ng-model="newcontact.gender">MALE
-                <input type="radio" value="FEMALE" ng-model="newcontact.gender">FEMALE
+                <fieldset>
+                    <input type="radio" id="man" value="MALE" ng-model="newcontact.gender"/>
+                    <label for="man">MALE</label>
+
+                    <input type="radio" id="women" value="FEMALE" ng-model="newcontact.gender"/>
+                    <label for="women">FEMALE</label>
+                </fieldset>
+
             </div>
         </div>
 
 
-
-        <!--<input type="button" value="Save" ng-click="saveContact()" class="btn btn-primary" />//-->
 
         <div style="clear: both; margin: 15px;">
             <input style="margin-top: 20px;padding:20px 70px; background: #337ab7;color: #fff; font-size:19px; font-weight: 200;"
@@ -113,7 +122,7 @@
       <pre id="formatted_json"></pre>
 
       <div class="col-6 btn btn-primary"
-           style="border: none;padding: 20px 40px; font-size:19px; font-weight: 200; background: #1ebb1e; color:#eee;"
+           style="border: none;padding: 20px 40px; font-size:19px; font-weight: 200; background: #337ab7; color:#eee;"
            id="btnFormat">Generate JSON</div>
       <!-- LIVE PREVIEW:
         <div style="opacity: 0; height: 0px;" id="raw_json">{{jsonObj | json}}</div>//-->
